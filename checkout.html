@@ -7,79 +7,24 @@ emails:
 sitemap: false
 ---
 
-<form id="checkout-form">
+<form method="post" action="/">
   <label>First Name</label>
-  <input type="text" name="first_name" required>
+  <input type="text" name="First Name">
 
   <label>Last Name</label>
-  <input type="text" name="last_name" required>
+  <input type="text" name="Last Name">
 
   <label>Email Address</label>
-  <input type="email" name="email" required>
+  <input type="text" name="Email">
 
   <label>Mailing Address</label>
-  <input type="text" name="street" placeholder="Street" required>
-  <input type="text" name="city" placeholder="City" required>
-  <input type="text" name="state" placeholder="State" required>
-  <input type="text" name="zip_code" placeholder="Zip Code" required>
+  <input type="text" name="Street" placeholder="Street">
+  <input type="text" name="City" placeholder="City">
+  <input type="text" name="State" placeholder="State">
+  <input type="text" name="Zip Code" placeholder="Zip Code">
 
   <input type="hidden" name="_to" value="{{ page.emails | join: ',' }}">
   <input type="text" name="_gotcha" style="display: none;">
 
-  <button type="button" id="midtrans-checkout">Pay with Midtrans</button>
+  <input type="submit" value="Send Order">
 </form>
-
-
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{site.CLIENT_KEY}}"></script>
-<script>
-document.getElementById("midtrans-checkout").addEventListener("click", function () {
-    var form = document.getElementById("checkout-form");
-
-    var orderData = {
-        transaction_details: {
-            order_id: "ORDER-" + new Date().getTime(),
-            gross_amount: simpleCart.total()
-        },
-        customer_details: {
-            first_name: form.first_name.value,
-            last_name: form.last_name.value,
-            email: form.email.value,
-            billing_address: {
-                address: form.street.value,
-                city: form.city.value,
-                postal_code: form.zip_code.value,
-                country_code: "IDN"
-            }
-        },
-        item_details: []
-    };
-
-    simpleCart.each(function (item) {
-        orderData.item_details.push({
-            id: item.id(),
-            price: item.price(),
-            quantity: item.quantity(),
-            name: item.get("name")
-        });
-    });
-
-    fetch("https://app.sandbox.midtrans.com/snap/v1/transactions", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Basic " + btoa("{{site.SERVER_KEY}}:")
-        },
-        body: JSON.stringify(orderData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.token) {
-            snap.pay(data.token);
-        } else {
-            alert("Error processing payment");
-            console.error(data);
-        }
-    })
-    .catch(error => console.error("Error:", error));
-});
-</script>

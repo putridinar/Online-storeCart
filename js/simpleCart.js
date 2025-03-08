@@ -62,6 +62,7 @@
 
 				// Currencies
 				currencies = {
+          "IDR": { code: "IDR", symbol: "Rp", name: "Indonesian Rupiah", accuracy: 0, delimiter: ".", decimal: "," }
 					"USD": { code: "USD", symbol: "&#36;", name: "US Dollar" },
 					"AUD": { code: "AUD", symbol: "&#36;", name: "Australian Dollar" },
 					"BRL": { code: "BRL", symbol: "R&#36;", name: "Brazilian Real" },

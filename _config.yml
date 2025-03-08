@@ -2,6 +2,7 @@
 title: Jekyll Cart
 description: A Jekyll Based Shopping Cart Built with simpleCart(js)
 url:
+CLIENT_KEY:
 
 # Jekyll Configuration
 encoding: UTF-8

@@ -62,7 +62,7 @@
 
 				// Currencies
 				currencies = {
-          "IDR": { code: "IDR", symbol: "Rp", name: "Indonesian Rupiah", accuracy: 0, delimiter: ".", decimal: "," }
+          "IDR": { code: "IDR", symbol: "Rp", name: "Indonesian Rupiah", accuracy: 0, delimiter: ".", decimal: "," },
 					"USD": { code: "USD", symbol: "&#36;", name: "US Dollar" },
 					"AUD": { code: "AUD", symbol: "&#36;", name: "Australian Dollar" },
 					"BRL": { code: "BRL", symbol: "R&#36;", name: "Brazilian Real" },
@@ -89,7 +89,7 @@
 				// default options
 				settings = {
 					checkout				: { type: "PayPal", email: "you@yours.com" },
-					currency				: "USD",
+					currency				: "IDR",
 					language				: "english-us",
 
 					cartStyle				: "div",
@@ -1290,29 +1290,25 @@
 			 *	FORMATTING FUNCTIONS
 			 *******************************************************************/
 			simpleCart.extend({
-				toCurrency: function (number,opts) {
-					var num = parseFloat(number),
-						opt_input = opts || {},
-						_opts = simpleCart.extend(simpleCart.extend({
-							  symbol:		"$"
-							, decimal:		"."
-							, delimiter:	","
-							, accuracy:		2
-							, after: false
-						}, simpleCart.currency()), opt_input),
+    toCurrency: function (number, opts) {
+        var num = parseFloat(number),
+            opt_input = opts || {},
+            _opts = simpleCart.extend(simpleCart.extend({
+                symbol: "Rp",
+                decimal: ",",
+                delimiter: ".",
+                accuracy: 0,
+                after: false
+            }, simpleCart.currency()), opt_input),
+            numParts = num.toFixed(_opts.accuracy).split("."),
+            dec = numParts[1],
+            ints = numParts[0];
 
-						numParts = num.toFixed(_opts.accuracy).split("."),
-						dec = numParts[1],
-						ints = numParts[0];
-			
-					ints = simpleCart.chunk(ints.reverse(), 3).join(_opts.delimiter.reverse()).reverse();
+        ints = simpleCart.chunk(ints.reverse(), 3).join(_opts.delimiter.reverse()).reverse();
 
-					return	(!_opts.after ? _opts.symbol : "") +
-							ints +
-							(dec ? _opts.decimal + dec : "") +
-							(_opts.after ? _opts.symbol : "");
-	
-				},
+        return (!_opts.after ? _opts.symbol + " " : "") + ints + (dec ? _opts.decimal + dec : "") + (_opts.after ? " " + _opts.symbol : "");
+    }
+});
 
 
 				// break a string in blocks of size n

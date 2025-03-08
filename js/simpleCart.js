@@ -1930,53 +1930,6 @@
 
 	window.simpleCart = generateSimpleCart();
 
-
-simpleCart.extendCheckout({
-    Midtrans: function (opts) {
-        if (!opts.clientKey || !opts.snapURL) {
-            return simpleCart.error("Midtrans clientKey dan snapURL diperlukan");
-        }
-
-        var orderData = {
-            transaction_details: {
-                order_id: "ORDER-" + new Date().getTime(),
-                gross_amount: simpleCart.total()
-            },
-            item_details: [],
-            customer_details: {
-                first_name: "Customer",
-                email: "customer@example.com"
-            }
-        };
-
-        simpleCart.each(function (item) {
-            orderData.item_details.push({
-                id: item.id(),
-                price: item.price(),
-                quantity: item.quantity(),
-                name: item.get("name")
-            });
-        });
-
-        fetch(opts.snapURL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Basic " + btoa(opts.clientKey + ":")
-            },
-            body: JSON.stringify(orderData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.token) {
-                snap.pay(data.token);
-            } else {
-                console.error("Midtrans error:", data);
-            }
-        })
-        .catch(error => console.error("Error:", error));
-    }
-});
 }(window, document));
 
 /************ JSON *************/

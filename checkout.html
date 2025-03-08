@@ -29,3 +29,57 @@ sitemap: false
   <button type="button" id="midtrans-checkout">Pay with Midtrans</button>
 </form>
 
+
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{site.CLIENT_KEY}}"></script>
+<script>
+document.getElementById("midtrans-checkout").addEventListener("click", function () {
+    var form = document.getElementById("checkout-form");
+
+    var orderData = {
+        transaction_details: {
+            order_id: "ORDER-" + new Date().getTime(),
+            gross_amount: simpleCart.total()
+        },
+        customer_details: {
+            first_name: form.first_name.value,
+            last_name: form.last_name.value,
+            email: form.email.value,
+            billing_address: {
+                address: form.street.value,
+                city: form.city.value,
+                postal_code: form.zip_code.value,
+                country_code: "IDN"
+            }
+        },
+        item_details: []
+    };
+
+    simpleCart.each(function (item) {
+        orderData.item_details.push({
+            id: item.id(),
+            price: item.price(),
+            quantity: item.quantity(),
+            name: item.get("name")
+        });
+    });
+
+    fetch("https://app.sandbox.midtrans.com/snap/v1/transactions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Basic " + btoa("{{site.SERVER_KEY}}:")
+        },
+        body: JSON.stringify(orderData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.token) {
+            snap.pay(data.token);
+        } else {
+            alert("Error processing payment");
+            console.error(data);
+        }
+    })
+    .catch(error => console.error("Error:", error));
+});
+</script>

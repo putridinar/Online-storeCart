@@ -1289,24 +1289,7 @@
 			 *	FORMATTING FUNCTIONS
 			 *******************************************************************/
 			simpleCart.extend({
-        toCurrency: function (number, opts) {
-            var num = parseFloat(number),
-                opt_input = opts || {},
-                _opts = simpleCart.extend(simpleCart.extend({
-                    symbol: "Rp",
-                    decimal: ",",
-                    delimiter: ".",
-                    accuracy: 0,
-                    after: false
-                }, simpleCart.currency()), opt_input),
-                numParts = num.toFixed(_opts.accuracy).split("."),
-                dec = numParts[1],
-                ints = numParts[0];
-
-            ints = simpleCart.chunk(ints.reverse(), 3).join(_opts.delimiter.reverse()).reverse();
-
-            return (!_opts.after ? _opts.symbol + " " : "") + ints + (dec ? _opts.decimal + dec : "") + (_opts.after ? " " + _opts.symbol : "");
-        },
+				toCurrency: function (number,opts) {
 					var num = parseFloat(number),
 						opt_input = opts || {},
 						_opts = simpleCart.extend(simpleCart.extend({

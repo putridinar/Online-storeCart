@@ -1289,24 +1289,7 @@
 			 *	FORMATTING FUNCTIONS
 			 *******************************************************************/
 			simpleCart.extend({
-        toCurrency: function (number, opts) {
-            var num = parseFloat(number),
-                opt_input = opts || {},
-                _opts = simpleCart.extend(simpleCart.extend({
-                    symbol: "Rp",
-                    decimal: ",",
-                    delimiter: ".",
-                    accuracy: 0,
-                    after: false
-                }, simpleCart.currency()), opt_input),
-                numParts = num.toFixed(_opts.accuracy).split("."),
-                dec = numParts[1],
-                ints = numParts[0];
-
-            ints = simpleCart.chunk(ints.reverse(), 3).join(_opts.delimiter.reverse()).reverse();
-
-            return (!_opts.after ? _opts.symbol + " " : "") + ints + (dec ? _opts.decimal + dec : "") + (_opts.after ? " " + _opts.symbol : "");
-        },
+				toCurrency: function (number,opts) {
 					var num = parseFloat(number),
 						opt_input = opts || {},
 						_opts = simpleCart.extend(simpleCart.extend({
@@ -1930,53 +1913,6 @@
 
 	window.simpleCart = generateSimpleCart();
 
-
-simpleCart.extendCheckout({
-    Midtrans: function (opts) {
-        if (!opts.clientKey || !opts.snapURL) {
-            return simpleCart.error("Midtrans clientKey dan snapURL diperlukan");
-        }
-
-        var orderData = {
-            transaction_details: {
-                order_id: "ORDER-" + new Date().getTime(),
-                gross_amount: simpleCart.total()
-            },
-            item_details: [],
-            customer_details: {
-                first_name: "Customer",
-                email: "customer@example.com"
-            }
-        };
-
-        simpleCart.each(function (item) {
-            orderData.item_details.push({
-                id: item.id(),
-                price: item.price(),
-                quantity: item.quantity(),
-                name: item.get("name")
-            });
-        });
-
-        fetch(opts.snapURL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Basic " + btoa(opts.clientKey + ":")
-            },
-            body: JSON.stringify(orderData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.token) {
-                snap.pay(data.token);
-            } else {
-                console.error("Midtrans error:", data);
-            }
-        })
-        .catch(error => console.error("Error:", error));
-    }
-});
 }(window, document));
 
 /************ JSON *************/

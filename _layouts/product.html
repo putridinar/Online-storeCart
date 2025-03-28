@@ -42,9 +42,9 @@ layout: default
 <script>
   document.querySelectorAll(".size-btn").forEach(button => {
     button.addEventListener("click", function() {
-      document.querySelectorAll(".size-btn").forEach(btn => btn.classList.remove("active"));
-      this.classList.add("active");
       document.getElementById("selectedSize").textContent = "" + this.getAttribute("data-size");
+    });
+  });
     });
   });
 </script>

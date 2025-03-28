@@ -91,18 +91,17 @@ justify-content: space-between;
         <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
     </div>
 <script>
-        function changeQuantity(amount) {
-            let quantityInput = document.getElementById('quantity');
-            let currentQuantity = parseInt(quantityInput.value);
-            let newQuantity = currentQuantity + amount;
-            
-            if (newQuantity < 1) newQuantity = 1;
-            quantityInput.value = newQuantity;
+        function decreaseQuantity() {
+            let qtyInput = document.getElementById('quantity');
+            let currentValue = parseInt(qtyInput.value);
+            if (currentValue > 1) {
+                qtyInput.value = currentValue - 1;
+            }
         }
 
-        function selectOption() {
-            let select = document.getElementById('options');
-            alert('Anda memilih: ' + select.value);
+        function increaseQuantity() {
+            let qtyInput = document.getElementById('quantity');
+            qtyInput.value = parseInt(qtyInput.value) + 1;
         }
 </script>
 

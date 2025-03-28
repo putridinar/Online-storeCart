@@ -31,12 +31,27 @@ layout: default
             {% endfor %}
         	</div>
 
-          <p class="margin-bottom-0">Size:</p>
+
+<label>Pilih Ukuran:</label>
+
+<div id="size-buttons">
+            {% for size in page.sizes %}
+  <button class="size-btn" data-size="{{ size }}">{{ size }}</button>
+            {% endfor %}
+</div><p id="selectedSize">Ukuran yang dipilih: -</p><script>
+  document.querySelectorAll(".size-btn item_ukuran").forEach(button => {
+    button.addEventListener("click", function() {
+      document.getElementById("selectedSize").textContent = "Ukuran yang dipilih: " + this.getAttribute("data-size");
+    });
+  });
+</script>
+
+          <!--<p class="margin-bottom-0">Size:</p>
           <select class="item_ukuran">
             {% for size in page.sizes %}
               <option value="{{ size }}"> {{ size }} </option>
             {% endfor %}
-          </select>
+          </select>-->
 
     <style>
         .quantity-container {

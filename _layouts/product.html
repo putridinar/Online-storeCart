@@ -38,8 +38,47 @@ layout: default
             {% endfor %}
           </select>
 
+    <style>
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        .item_Quantity {
+            width: 50px;
+            text-align: center;
+            font-size: 16px;
+            pointer-events: none;
+            background-color: #f0f0f0;
+            border: none;
+        }
+    </style>
+    <div class="quantity-container">
+        <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+        <input type="number" id="quantity" class="item_Quantity" value="1" min="1" readonly>
+        <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+    </div><script>
+    function changeQuantity(amount) {
+        let quantityInput = document.getElementById('quantity');
+        let currentQuantity = parseInt(quantityInput.value);
+        let newQuantity = currentQuantity + amount;
+        
+        if (newQuantity < 1) newQuantity = 1;
+        quantityInput.value = newQuantity;
+    }
+</script>
           <p class="margin-bottom-0">Quantity:</p>
-          <select class="item_Quantity">
+          <select class="">
             <option value="1"> 1 </option>
             <option value="2"> 2 </option>
             <option value="3"> 3 </option>

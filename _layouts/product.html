@@ -38,10 +38,10 @@ layout: default
             {% for size in page.sizes %}
   <button class="btn-size" data-size="{{ size }}">{{ size }}</button>
             {% endfor %}
-</div><p class="item_ukuran" id="selectedSize">Ukuran : </p><script>
+</div><p class="item_ukuran" id="selectedSize"></p><script>
   document.querySelectorAll(".btn-size").forEach(button => {
     button.addEventListener("click", function() {
-      document.getElementById("selectedSize").textContent = Ukuran "" + this.getAttribute("data-size");
+      document.getElementById("selectedSize").textContent = "" + this.getAttribute("data-size");
     });
   });
 </script>

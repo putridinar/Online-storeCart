@@ -85,15 +85,15 @@ justify-content: space-between;
         <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
         <input type="number" id="quantity" class="item_Quantity" value="1" min="1" readonly>
         <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
-    </div><script>
-    function changeQuantity(amount) {
-        let quantityInput = document.getElementById('quantity');
-        let currentQuantity = parseInt(quantityInput.value);
-        let newQuantity = currentQuantity + amount;
-        
-        if (newQuantity < 1) newQuantity = 1;
-        quantityInput.value = newQuantity;
-    }
+    </div>
+<script>
+  document.querySelectorAll(".size-btn").forEach(button => {
+    button.addEventListener("click", function() {
+      document.querySelectorAll(".size-btn").forEach(btn => btn.classList.remove("active"));
+      this.classList.add("active");
+      document.getElementById("selectedSize").textContent = "" + this.getAttribute("data-size");
+    });
+  });
 </script>
 
           <a id="item_add" class="item_add button small" style="max-height:40px;" href="javascript:;"> Add to Cart </a></span>

@@ -592,7 +592,7 @@ var tombolRemove = '<ion-icon name="trash-outline"></ion-icon>';
                     return [item.get(column.attr)];
                 },
                 remove: function (item, column) {
-                    return ["<link href='javascript:;' class='" + namespace + "_remove'>" + tombolRemove + "</link>"];
+                    return ["<a href='javascript:;' class='" + namespace + "_remove'>" + tombolRemove + "</a>"];
                 },
             };
 

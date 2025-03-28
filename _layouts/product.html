@@ -38,20 +38,13 @@ layout: default
             {% for size in page.sizes %}
   <button class="btn-size" data-size="{{ size }}">{{ size }}</button>
             {% endfor %}
-</div><p class="item_ukuran" id="selectedSize"></p><script>
+</div><p class="item_ukuran" id="selectedSize">Ukuran : </p><script>
   document.querySelectorAll(".btn-size").forEach(button => {
     button.addEventListener("click", function() {
-      document.getElementById("selectedSize").textContent = "Ukuran : " + this.getAttribute("data-size");
+      document.getElementById("selectedSize").textContent = "" + this.getAttribute("data-size");
     });
   });
 </script>
-
-          <!--<p class="margin-bottom-0">Size:</p>
-          <select class="item_ukuran">
-            {% for size in page.sizes %}
-              <option value="{{ size }}"> {{ size }} </option>
-            {% endfor %}
-          </select>-->
 
     <style>
         .quantity-container {

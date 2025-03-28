@@ -1,32 +1,16 @@
 simpleCart({
-  checkout: {
-    type: "PayPal",
-    email: "you@yours.com",
-  },
-
-  tax: 0.05, // 5% tax
-  
-  cartStyle: "div", // Pastikan ada elemen <div>
-
-  cartColumns: [
-    { attr: "name", label: "Name" },
-    { attr: "price", label: "Price", view: "currency" },
-    { attr: "size", label: "Size" },
-    { attr: "color", label: "Color" },
-    { view: "decrement", label: false, text: "- 1" },
-    { attr: "quantity", label: "Qty" },
-    { view: "increment", label: false, text: "+ 1" },
-    { attr: "total", label: "SubTotal", view: "currency" },
-    { view: "remove", text: "Remove", label: false },
-  ]
-});
-
-simpleCart.currency({
-  code: "IDR",
-  name: "Indonesian Rupiah",
-  symbol: "Rp",
-  delimiter: ".",
-  decimal: ",",
-  after: false, // Agar formatnya "Rp 1.000" bukan "1.000 Rp"
-  accuracy: 0
+        cartColumns: [
+{ attr: "thumb", label: false, view: "thumb" },
+{ attr: "name", label: false, view: "link" },
+{ view: "remove", text: false, label: !1 },
+{ attr: "price", label: false, view: "harga" },
+{ attr: "warna", label: 'Warna', view: "warna" },
+{ attr: "ukuran", label: false, view: "ukuran" },
+{ view: "decrement", label: false },
+{ attr: "quantity", label: 'false', view: "qty" },
+{ view: "increment", label: false },
+{ attr: "total", label: false, view: "currency" },
+{ attr: "link", label: false, view: "link" },
+],
+        currency: "IDR",
 });

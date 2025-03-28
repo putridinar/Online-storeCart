@@ -636,7 +636,7 @@ var tombolRemove = '<ion-icon name="trash-outline"></ion-icon>';
                         label,
                         x,
                         xlen;
-                       $(".ck-btn,.basket-detail,.harga-total,#total-harga,.right_side,.lisQdaffadev,.chatWhatsapp").hide();
+                       $(".ck-btn,.basket-detail,.harga-total,#total-harga,.right_side,.cikini,.chatWhatsapp").hide();
                        $("keranjang-kosong").show();
 
                     container.html(" ").append(cart_container);
@@ -676,7 +676,7 @@ var tombolRemove = '<ion-icon name="trash-outline"></ion-icon>';
                         content,
                         cell;
                     $(".empty-cart,.keranjang-kosong,.chatWhatsapp").hide();
-                    $(".ck-btn,.basket-detail,.harga-total,#total-harga,.right_side,.lisQdaffadev").show();
+                    $(".ck-btn,.basket-detail,.harga-total,#total-harga,.right_side,.cikini").show();
 
                     container.append(row);
 

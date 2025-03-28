@@ -36,10 +36,10 @@ layout: default
 
 <div id="size-buttons">
             {% for size in page.sizes %}
-  <button class="size-btn" data-size="{{ size }}">{{ size }}</button>
+  <button class="item_ukuran" data-size="{{ size }}">{{ size }}</button>
             {% endfor %}
 </div><p id="selectedSize">Ukuran yang dipilih: -</p><script>
-  document.querySelectorAll(".size-btn item_ukuran").forEach(button => {
+  document.querySelectorAll(".item_ukuran").forEach(button => {
     button.addEventListener("click", function() {
       document.getElementById("selectedSize").textContent = "Ukuran yang dipilih: " + this.getAttribute("data-size");
     });

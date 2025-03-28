@@ -38,9 +38,12 @@ layout: default
             {% for size in page.sizes %}
   <button class="btn-size" data-size="{{ size }}">{{ size }}</button>
             {% endfor %}
-</div><p class="item_ukuran" id="selectedSize">Silahkan Pilih</p><script>
-  document.querySelectorAll(".btn-size").forEach(button => {
+</div><p class="item_ukuran" id="selectedSize">Silahkan Pilih</p>
+<script>
+  document.querySelectorAll(".size-btn").forEach(button => {
     button.addEventListener("click", function() {
+      document.querySelectorAll(".size-btn").forEach(btn => btn.classList.remove("active"));
+      this.classList.add("active");
       document.getElementById("selectedSize").textContent = "" + this.getAttribute("data-size");
     });
   });
@@ -88,13 +91,19 @@ justify-content: space-between;
         <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
     </div>
 <script>
-  document.querySelectorAll(".size-btn").forEach(button => {
-    button.addEventListener("click", function() {
-      document.querySelectorAll(".size-btn").forEach(btn => btn.classList.remove("active"));
-      this.classList.add("active");
-      document.getElementById("selectedSize").textContent = "" + this.getAttribute("data-size");
-    });
-  });
+        function changeQuantity(amount) {
+            let quantityInput = document.getElementById('quantity');
+            let currentQuantity = parseInt(quantityInput.value);
+            let newQuantity = currentQuantity + amount;
+            
+            if (newQuantity < 1) newQuantity = 1;
+            quantityInput.value = newQuantity;
+        }
+
+        function selectOption() {
+            let select = document.getElementById('options');
+            alert('Anda memilih: ' + select.value);
+        }
 </script>
 
           <a id="item_add" class="item_add button small" style="max-height:40px;" href="javascript:;"> Add to Cart </a></span>

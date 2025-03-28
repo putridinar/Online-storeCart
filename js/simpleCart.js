@@ -1652,7 +1652,7 @@ JSON || (JSON = {});
 
 
 $(document).ready(function () {
-    var dev = 'RGFmZmFEZXY=',
+    var dev = 'UHV0cmkgRGluYXI=',
     myLicense = atob(dev),
     tpllc = $('#footer').text(),
     second = 10;

@@ -40,9 +40,9 @@ layout: default
             {% endfor %}
 </div><p class="item_ukuran" id="selectedSize">Silahkan Pilih</p>
 <script>
-  document.querySelectorAll(".size-btn").forEach(button => {
-    button.addEventListener("click", function() {
-      document.getElementById("selectedSize").textContent = "" + this.getAttribute("data-size");
+   document.querySelectorAll(".btn-size").forEach(button => {
+     button.addEventListener("click", function() {
+       document.getElementById("selectedSize").textContent = "" + this.getAttribute("data-size");
     });
   });
 </script>

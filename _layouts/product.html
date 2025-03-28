@@ -34,11 +34,11 @@ layout: default
 
 <label>Pilih Ukuran:</label>
 
-<div class="item_ukuran" id="size-buttons">
+<div id="size-buttons">
             {% for size in page.sizes %}
   <button class="btn-size" data-size="{{ size }}">{{ size }}</button>
             {% endfor %}
-</div><p id="selectedSize">Ukuran yang dipilih: -</p><script>
+</div><p class="item_ukuran" id="selectedSize">Ukuran yang dipilih: -</p><script>
   document.querySelectorAll(".btn-size").forEach(button => {
     button.addEventListener("click", function() {
       document.getElementById("selectedSize").textContent = "Ukuran yang dipilih: " + this.getAttribute("data-size");

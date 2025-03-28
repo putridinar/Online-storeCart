@@ -74,7 +74,13 @@ layout: default
             background-color: #f0f0f0;
             border: none;
         }
+.flex-content {
+display: flex;
+align-item: center;
+justify-content: space-between;
+}
     </style>
+<div class="flex-content">
     <div class="quantity-container">
         <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
         <input type="number" id="quantity" class="item_Quantity" value="1" min="1" readonly>
@@ -91,6 +97,7 @@ layout: default
 </script>
 
           <a id="item_add" class="item_add button" href="javascript:;"> Add to Cart </a></span>
+</div>
         </section>
 
       </main>

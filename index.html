@@ -1,0 +1,96 @@
+---
+layout: default
+title: Ionic SPA Tabs
+---
+
+<ion-router use-hash="false">
+  <ion-route url="/" component="home"></ion-route>
+  <ion-route url="/shop" component="shop"></ion-route>
+  <ion-route url="/profile" component="profile"></ion-route>
+</ion-router>
+
+<ion-tabs>
+  <ion-router-outlet></ion-router-outlet>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" href="/">
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="shop" href="/shop">
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-label>Shop</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile" href="/profile">
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+<template id="home">
+  <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Home</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <p>Welcome to the Home tab!</p>
+    </ion-content>
+  </ion-page>
+</template>
+
+<template id="shop">
+  <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Shop</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <p>Browse our products here.</p>
+    </ion-content>
+  </ion-page>
+</template>
+
+<template id="profile">
+  <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Profile</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <p>This is your profile page.</p>
+    </ion-content>
+  </ion-page>
+</template>
+
+<script>
+  const templates = {
+    home: document.getElementById('home').content,
+    shop: document.getElementById('shop').content,
+    profile: document.getElementById('profile').content,
+  };
+
+  customElements.define('home', class extends HTMLElement {
+    connectedCallback() {
+      this.appendChild(templates.home.cloneNode(true));
+    }
+  });
+
+  customElements.define('shop', class extends HTMLElement {
+    connectedCallback() {
+      this.appendChild(templates.shop.cloneNode(true));
+    }
+  });
+
+  customElements.define('profile', class extends HTMLElement {
+    connectedCallback() {
+      this.appendChild(templates.profile.cloneNode(true));
+    }
+  });
+</script>

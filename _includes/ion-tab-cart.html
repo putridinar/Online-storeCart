@@ -12,10 +12,31 @@
     <div class="simplecart-total harga-total">
       <p>Grand Total: </p><span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
     </div>
-    <a class="button ck-btn right" href="/checkout/">Checkout</a>
+  <ion-button class="button ck-btn" expand="block" onclick="modal.isOpen = true">Checkout</ion-button>
 </p>
   </div>
 </div>
+  <ion-modal>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Modal</ion-title>
+        <ion-buttons slot="end">
+          <ion-button onclick="modal.isOpen = false">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
+        reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
+        dicta.
+      </p>
+    </ion-content>
+  </ion-modal>
       </ion-content>
     </div>
   </ion-tab>
+
+<script>
+  var modal = document.querySelector('ion-modal');
+</script>

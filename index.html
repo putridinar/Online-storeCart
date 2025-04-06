@@ -3,69 +3,83 @@ layout: default
 title: Ionic jekyllCart
 ---
 
-<ion-router use-hash="false">
-  <ion-route url="/" component="home"></ion-route>
-  <ion-route url="/shop" component="shop"></ion-route>
-  <ion-route url="/cart" component="cart"></ion-route>
-  <ion-route url="/profile" component="profile"></ion-route>
-</ion-router>
-
 <ion-tabs>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-tab tab="home">
+    <div id="home-page">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Listen now</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class="example-content">Listen now content</div>
+      </ion-content>
+    </div>
+  </ion-tab>
+  <ion-tab tab="radio">
+    <div id="radio-page">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Radio</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class="example-content">Radio content</div>
+      </ion-content>
+    </div>
+  </ion-tab>
+  <ion-tab tab="library">
+    <div id="library-page">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Library</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class="example-content">Library content</div>
+      </ion-content>
+    </div>
+  </ion-tab>
+  <ion-tab tab="search">
+    <div id="search-page">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Search</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class="example-content">Search content</div>
+      </ion-content>
+    </div>
+  </ion-tab>
 
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home" href="/">
-      <ion-icon name="home-outline"></ion-icon>
-      <ion-label>Home</ion-label>
+    <ion-tab-button tab="home">
+      <ion-icon name="play-circle"></ion-icon>
+      Listen Now
     </ion-tab-button>
-
-    <ion-tab-button tab="shop" href="/shop">
-      <ion-icon name="storefront-outline"></ion-icon>
-      <ion-label>Shop</ion-label>
+    <ion-tab-button tab="radio">
+      <ion-icon name="radio"></ion-icon>
+      Radio
     </ion-tab-button>
-
-    <ion-tab-button tab="cart" href="/cart">
-      <ion-icon name="cart-outline"></ion-icon>
-      <ion-label>Cart</ion-label>
+    <ion-tab-button tab="library">
+      <ion-icon name="library"></ion-icon>
+      Library
     </ion-tab-button>
-
-    <ion-tab-button tab="profile" href="/profile">
-      <ion-icon name="person-outline"></ion-icon>
-      <ion-label>Profile</ion-label>
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      Search
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
 
-<script>
-  const fetchHTML = async (filename) => {
-    const res = await fetch(`/content/${filename}`);
-    return await res.text(); // langsung HTML, tidak perlu convert
-  };
-
-  const createComponent = (tag, id, htmlPath, title) => {
-    customElements.define(tag, class extends HTMLElement {
-      async connectedCallback() {
-        const html = await fetchHTML(htmlPath);
-        this.innerHTML = `
-          <ion-tab tab="${tag}">
-           <div id="${id}">
-            <ion-header>
-              <ion-toolbar>
-                <ion-title>${title}</ion-title>
-              </ion-toolbar>
-            </ion-header>
-            <ion-content class="ion-padding">
-              ${html}
-            </ion-content>
-           </div>
-          </ion-tab>
-        `;
-      }
-    });
-  };
-
-  createComponent('home', 'home-page', '/content/home.html', 'Home');
-  createComponent('shop', 'shop-page', '/content/shop.html', 'Shop');
-  createComponent('cart', 'cart-page', '/content/cart.html', 'Shop');
-  createComponent('profile', 'profile-page', '/content/profile.html', 'Profile');
-</script>
+<style>
+  /* This style is for demonstration purposes only. */
+  /* It's not required for the tabs to function. */
+  .example-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+</style>

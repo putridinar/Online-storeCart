@@ -74,6 +74,16 @@ document.getElementById('pay-button').addEventListener('click', function () {
       })
       .then(res => res.json())
       .then(data => {
+// Simpan data pembeli ke localStorage
+localStorage.setItem('buyer', JSON.stringify({
+  first_name: formData.get('First Name'),
+  last_name: formData.get('Last Name'),
+  email: formData.get('Email'),
+  street: formData.get('Street'),
+  city: formData.get('City'),
+  state: formData.get('State'),
+  zip: formData.get('Zip Code')
+}));
         snap.pay(data.token, {
           onSuccess: function(result) {                                
             localStorage.removeItem('simpleCart_items');

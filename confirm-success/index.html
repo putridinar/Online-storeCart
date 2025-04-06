@@ -59,5 +59,10 @@ permalink: /confirm-success
     // Kosongkan keranjang setelah pesan dikirim
     simpleCart.empty();
     localStorage.removeItem("buyer");
+
+// Redirect ke halaman depan setelah 2 detik (biar link WA keburu terbuka)
+setTimeout(function () {
+  window.location.href = "/";
+}, 2000);
   });
 </script>

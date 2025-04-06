@@ -7,35 +7,28 @@ layout: compress
 
   {% include head.html %}
 
-  <body {% if page.url == '/' %}class="home{% if page.sidebar_option != 'sidebar' %} full-width-content{% endif %}" {% elsif page.url contains '/blog/' or page.layout == 'archive' %}class="archive full-width-content" {% elsif page.url contains '/products/' %}class="product" {% elsif page.sidebar_option != 'sidebar' %}class="full-width-content" {% endif %}itemscope itemtype="http://schema.org/WebPage">
-
-    <div class="site-container">
+  <body itemscope itemtype="http://schema.org/WebPage">
 
       <!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
       <![endif]-->
 
-      {% include header.html %}
+  <ion-app>
+    {{ content }}
+  </ion-app>
 
-      {{ content }}
-
-      {% include footer-widgets.html %}
-      {% include footer.html %}
-
-    </div>
-
-    <script src="{{ site.url }}/assets/js/jquery-2.2.4.min.js"></script>
-    <script src="{{ site.url }}/assets/js/simpleCart.js"></script>
-    <script async src="{{ site.url }}/assets/js/main.js"></script>
-    <script async src="{{ site.url }}/assets/js/responsive-menu.js"></script>
+    <script src="{{ '/assets/js/jquery-2.2.4.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/simpleCart.js' | relative_url }}"></script>
+    <script async src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script async src="{{ '/assets/js/responsive-menu.js' | relative_url }}"></script>
 
     {% if page.url contains '/products/' %}
-      <script async src="{{ site.url }}/assets/js/style-picker.js"></script>
-      <script async src="{{ site.url }}/assets/js/add-to-cart.js"></script>
+      <script async src="{{ '/assets/js/style-picker.js' | relative_url }}"></script>
+      <script async src="{{ '/assets/js/add-to-cart.js' | relative_url }}"></script>
     {% endif %}
 
     {% if page.url == '/checkout/' %}
-    <script async src="{{ site.url }}/assets/js/checkout.js"></script>
+    <script async src="{{ '/assets/js/checkout.js' | relative_url }}"></script>
     {% endif %}
 
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js"></script>

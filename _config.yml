@@ -18,7 +18,7 @@ kramdown:
 
 # Sass/SCSS settings
 sass:
-  sass_dir: _sass
+  sass_dir: /assets/_sass
   style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
 # Custom Collections

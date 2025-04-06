@@ -6,6 +6,7 @@ title: Ionic SPA Tabs
 <ion-router use-hash="false">
   <ion-route url="/" component="home-page"></ion-route>
   <ion-route url="/shop" component="shop-page"></ion-route>
+  <ion-route url="/cart" component="cart-page"></ion-route>
   <ion-route url="/profile" component="profile-page"></ion-route>
 </ion-router>
 
@@ -18,8 +19,12 @@ title: Ionic SPA Tabs
       <ion-label>Home</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="shop" href="/shop">
-      <ion-icon name="cart-outline"></ion-icon>
+      <ion-icon name="storefront-outline"></ion-icon>
       <ion-label>Shop</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="cart" href="/cart">
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-label>Cart</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="profile" href="/profile">
       <ion-icon name="person-outline"></ion-icon>
@@ -27,7 +32,6 @@ title: Ionic SPA Tabs
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
-{% include footer.html %}
 
 <script>
   const fetchHTML = async (filename) => {
@@ -57,5 +61,6 @@ title: Ionic SPA Tabs
 
   createComponent('home-page', '/content/home.html', 'Home');
   createComponent('shop-page', '/content/shop.html', 'Shop');
+  createComponent('cart-page', '/content/cart.html', 'Cart');
   createComponent('profile-page', '/content/profile.html', 'Profile');
 </script>

@@ -8,3 +8,47 @@ permalink: /confirm-success
   <h2>Konfirmasi Pembayaran Kamu</h2>
  
   <p>Total: <span class="simpleCart_total"></span></p>
+
+<button type="button" id="whatsapp-button">Kirim via WhatsApp</button>
+
+<script>
+  document.getElementById('whatsapp-button').addEventListener('click', function () {
+    const form = document.getElementById('checkout-form');
+    const formData = new FormData(form);
+
+    const firstName = formData.get('First Name');
+    const lastName = formData.get('Last Name');
+    const email = formData.get('Email');
+    const street = formData.get('Street');
+    const city = formData.get('City');
+    const state = formData.get('State');
+    const zip = formData.get('Zip Code');
+
+    let message = `Halo, saya ingin melakukan pemesanan:\n\n`;
+    message += `Nama: ${firstName} ${lastName}\n`;
+    message += `Email: ${email}\n`;
+    message += `Alamat: ${street}, ${city}, ${state}, ${zip}\n\n`;
+    message += `Detail Pesanan:\n`;
+
+    let total = 0;
+
+    simpleCart.each(function (item) {
+      const name = item.get('name');
+      const quantity = item.get('quantity');
+      const price = item.get('price');
+      const subtotal = item.get('total');
+      total += subtotal;
+
+      message += `- ${name} x ${quantity} @Rp${price} = Rp${subtotal}\n`;
+    });
+
+    message += `\nTotal: Rp${total}`;
+
+    // Ganti dengan nomor WhatsApp penjual (awali dengan kode negara, misal: 6281234567890)
+    const phoneNumber = "6281111191209";
+    const encodedMessage = encodeURIComponent(message);
+    const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    window.open(waLink, '_blank');
+  });
+</script>

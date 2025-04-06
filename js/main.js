@@ -5,7 +5,7 @@ simpleCart({
 { view: "remove", text: false, label: !1 },
 { attr: "price", label: false, view: "harga" },
 { attr: "warna", label: 'Warna', view: "warna" },
-{ attr: "ukuran", label: false, view: "ukuran" },
+{ attr: "varian", label: false, view: "varian" },
 { view: "decrement", label: false },
 { attr: "quantity", label: 'false', view: "qty" },
 { view: "increment", label: false },

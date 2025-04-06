@@ -28,3 +28,39 @@ sitemap: false
 
   <button id="pay-button">bayar</button>
 </form>
+
+
+  <script>
+    simpleCart.ready(function () {
+      document.getElementById('pay-button').addEventListener('click', function () {
+        let items = [];
+        let total = 0;
+
+        simpleCart.each(function (item) {
+          items.push({
+            id: item.get('id') || item.get('name'), // fallback
+            name: item.get('name'),
+            quantity: item.get('quantity'),
+            price: item.get('price')
+          });
+          total += item.get('total');
+        });
+
+        fetch('/midtrans', { // endpoint dari Cloudflare Pages Function
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ total: total, items: items })
+        })
+        .then(res => res.json())
+        .then(data => {
+          snap.pay(data.token);
+        })
+        .catch(err => {
+          alert("Gagal memulai pembayaran");
+          console.error(err);
+        });
+      });
+    });
+  </script>

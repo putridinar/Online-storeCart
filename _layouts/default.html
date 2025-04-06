@@ -24,18 +24,18 @@ layout: compress
 
     </div>
 
-    <script src="{{ site.url }}/js/jquery-2.2.4.min.js"></script>
-    <script src="{{ site.url }}/js/simpleCart.js"></script>
-    <script async src="{{ site.url }}/js/main.js"></script>
-    <script async src="{{ site.url }}/js/responsive-menu.js"></script>
+    <script src="{{ site.url }}/assets/js/jquery-2.2.4.min.js"></script>
+    <script src="{{ site.url }}/assets/js/simpleCart.js"></script>
+    <script async src="{{ site.url }}/assets/js/main.js"></script>
+    <script async src="{{ site.url }}/assets/js/responsive-menu.js"></script>
 
     {% if page.url contains '/products/' %}
-      <script async src="{{ site.url }}/js/style-picker.js"></script>
-      <script async src="{{ site.url }}/js/add-to-cart.js"></script>
+      <script async src="{{ site.url }}/assets/js/style-picker.js"></script>
+      <script async src="{{ site.url }}/assets/js/add-to-cart.js"></script>
     {% endif %}
 
     {% if page.url == '/checkout/' %}
-    <script async src="{{ site.url }}/js/checkout.js"></script>
+    <script async src="{{ site.url }}/assets/js/checkout.js"></script>
     {% endif %}
 
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js"></script>

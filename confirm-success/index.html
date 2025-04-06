@@ -4,51 +4,60 @@ title: Pembayaran Sukses
 permalink: /confirm-success
 ---
 
+<h2>Pembayaran Kamu Berhasil!</h2>
 
-  <h2>Konfirmasi Pembayaran Kamu</h2>
- <div class="simpleCart_items" style="display:none;"></div>
-  <p>Total: <span class="simpleCart_total"></span></p>
+<div class="simpleCart_items" style="display:none;"></div>
+<p>Total: <span class="simpleCart_total"></span></p>
 
 <button type="button" id="whatsapp-button">Kirim via WhatsApp</button>
 
 <script>
-  document.getElementById('whatsapp-button').addEventListener('click', function () {
-    const form = document.getElementById('checkout-form');
-    const formData = new FormData(form);
+  document.getElementById("whatsapp-button").addEventListener("click", function () {
+    const buyer = JSON.parse(localStorage.getItem("buyer")) || {};
 
-    const firstName = formData.get('First Name');
-    const lastName = formData.get('Last Name');
-    const email = formData.get('Email');
-    const street = formData.get('Street');
-    const city = formData.get('City');
-    const state = formData.get('State');
-    const zip = formData.get('Zip Code');
+    const firstName = buyer.first_name || "";
+    const lastName = buyer.last_name || "";
+    const email = buyer.email || "";
+    const street = buyer.street || "";
+    const city = buyer.city || "";
+    const state = buyer.state || "";
+    const zip = buyer.zip || "";
 
-    let message = `Halo, saya ingin melakukan pemesanan:\n\n`;
+    let message = `Halo, saya ingin konfirmasi pembayaran:\n\n`;
     message += `Nama: ${firstName} ${lastName}\n`;
     message += `Email: ${email}\n`;
     message += `Alamat: ${street}, ${city}, ${state}, ${zip}\n\n`;
     message += `Detail Pesanan:\n`;
 
     let total = 0;
+    let itemCount = 0;
 
     simpleCart.each(function (item) {
-      const name = item.get('name');
-      const quantity = item.get('quantity');
-      const price = item.get('price');
-      const subtotal = item.get('total');
+      const name = item.get("name");
+      const quantity = item.get("quantity");
+      const price = item.get("price");
+      const subtotal = item.get("total");
       total += subtotal;
+      itemCount++;
 
       message += `- ${name} x ${quantity} @Rp${price} = Rp${subtotal}\n`;
     });
 
+    if (itemCount === 0) {
+      alert("Keranjang kosong. Tidak ada data untuk dikirim.");
+      return;
+    }
+
     message += `\nTotal: Rp${total}`;
 
-    // Ganti dengan nomor WhatsApp penjual (awali dengan kode negara, misal: 6281234567890)
     const phoneNumber = "6281111191209";
     const encodedMessage = encodeURIComponent(message);
     const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-    window.open(waLink, '_blank');
+    window.open(waLink, "_blank");
+
+    // Kosongkan keranjang setelah pesan dikirim
+    simpleCart.empty();
+    localStorage.removeItem("buyer");
   });
 </script>

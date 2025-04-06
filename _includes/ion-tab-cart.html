@@ -12,14 +12,14 @@
     <div class="simplecart-total harga-total">
       <p>Grand Total: </p><span class="simpleCart_quantity"></span> items - <span class="simpleCart_total"></span>
     </div>
-  <ion-button class="button ck-btn" expand="block" onclick="modal.isOpen = true">Checkout</ion-button>
+  <ion-button class="ck-btn" expand="block" onclick="modal.isOpen = true">Checkout</ion-button>
 </p>
   </div>
 </div>
   <ion-modal>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Modal</ion-title>
+        <ion-title>Checkout</ion-title>
         <ion-buttons slot="end">
           <ion-button onclick="modal.isOpen = false">Close</ion-button>
         </ion-buttons>
@@ -45,7 +45,7 @@
   <input type="hidden" name="_to" value="{{ page.emails | join: ',' }}">
   <input type="text" name="_gotcha" style="display: none;">
 
-  <button type="button" id="pay-button">bayar</button>
+  <ion-button type="button" id="pay-button">bayar</ion-button>
 </form>
 
 <script>

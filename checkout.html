@@ -75,8 +75,8 @@ document.getElementById('pay-button').addEventListener('click', function () {
       .then(res => res.json())
       .then(data => {
         snap.pay(data.token, {
-          onSuccess: function(result) {
-            simpleCart.empty(); // Hapus keranjang kalau sukses
+          onSuccess: function(result) {                                
+            localStorage.removeItem('simpleCart_items');
             alert("Pembayaran berhasil!");
           },
           onPending: function(result) {

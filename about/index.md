@@ -4,6 +4,7 @@ description:
 sidebar_option:
 featured_image_path:
 facebook_image_path:
+permalink: /about
 ---
 
 ## So what is Jekyll, exactly?

@@ -42,12 +42,13 @@ title: Ionic jekyllCart
     return await res.text(); // langsung HTML, tidak perlu convert
   };
 
-  const createComponent = (tag, htmlPath, title) => {
+  const createComponent = (tag, id, htmlPath, title) => {
     customElements.define(tag, class extends HTMLElement {
       async connectedCallback() {
         const html = await fetchHTML(htmlPath);
         this.innerHTML = `
           <ion-tab tab="${tag}">
+           <div id="${id}">
             <ion-header>
               <ion-toolbar>
                 <ion-title>${title}</ion-title>
@@ -56,14 +57,15 @@ title: Ionic jekyllCart
             <ion-content class="ion-padding">
               ${html}
             </ion-content>
+           </div>
           </ion-tab>
         `;
       }
     });
   };
 
-  createComponent('home-page', '/content/home.html', 'Home');
-  createComponent('shop-page', '/content/shop.html', 'Shop');
-  createComponent('cart-page', '/content/cart.html', 'Shop');
-  createComponent('profile-page', '/content/profile.html', 'Profile');
+  createComponent('home', 'home-page', '/content/home.html', 'Home');
+  createComponent('shop', 'shop-page', '/content/shop.html', 'Shop');
+  createComponent('cart', 'cart-page', '/content/cart.html', 'Shop');
+  createComponent('profile', 'profile-page', '/content/profile.html', 'Profile');
 </script>

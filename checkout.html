@@ -26,41 +26,52 @@ sitemap: false
   <input type="hidden" name="_to" value="{{ page.emails | join: ',' }}">
   <input type="text" name="_gotcha" style="display: none;">
 
-  <button id="pay-button">bayar</button>
+  <button type="button" id="pay-button">bayar</button>
 </form>
 
+<script>
+document.getElementById('pay-button').addEventListener('click', function () {
+  const form = document.getElementById('checkout-form');
+  const formData = new FormData(form);
 
-  <script>
-    simpleCart.ready(function () {
-      document.getElementById('pay-button').addEventListener('click', function () {
-        let items = [];
-        let total = 0;
+  const customer = {
+    first_name: formData.get('First Name'),
+    last_name: formData.get('Last Name'),
+    email: formData.get('Email'),
+    address: {
+      street: formData.get('Street'),
+      city: formData.get('City'),
+      state: formData.get('State'),
+      postal_code: formData.get('Zip Code')
+    }
+  };
 
-        simpleCart.each(function (item) {
-          items.push({
-            id: item.get('id') || item.get('name'), // fallback
-            name: item.get('name'),
-            quantity: item.get('quantity'),
-            price: item.get('price')
-          });
-          total += item.get('total');
-        });
+  let items = [];
+  let total = 0;
 
-        fetch('/midtrans', { // endpoint dari Cloudflare Pages Function
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ total: total, items: items })
-        })
-        .then(res => res.json())
-        .then(data => {
-          snap.pay(data.token);
-        })
-        .catch(err => {
-          alert("Gagal memulai pembayaran");
-          console.error(err);
-        });
-      });
+  simpleCart.each(function (item) {
+    items.push({
+      id: item.get('id') || item.get('name'),
+      name: item.get('name'),
+      quantity: item.get('quantity'),
+      price: item.get('price')
     });
-  </script>
+    total += item.get('total');
+  });
+
+  // Kirim ke function di Cloudflare
+  fetch('/midtrans', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ total: total, items: items, customer: customer })
+  })
+  .then(res => res.json())
+  .then(data => {
+    snap.pay(data.token);
+  })
+  .catch(err => {
+    alert("Gagal memulai pembayaran");
+    console.error(err);
+  });
+});
+</script>

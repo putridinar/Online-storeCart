@@ -14,7 +14,7 @@
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:title" content="{% if page.title %}{{ page.title }}{% elsif page.headline %}{{ page.headline }}{% else %}{{ site.title }}{% endif %}">
   <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ page.content | strip_html | strip | strip_newlines | truncate: 160 }}{% endif %}">
-  <meta property="og:image" content="{% if page.facebook_image_path %}{{ page.facebook_image_path }}{% elsif page.featured_image_path %}{{ page.featured_image_path }}{% else %}{{ site.url }}/images/default.jpg{% endif %}">
+  <meta property="og:image" content="{% if page.facebook_image_path %}{{ page.facebook_image_path }}{% elsif page.featured_image_path %}{{ page.featured_image_path }}{% else %}{{ site.url }}/assets/images/default.jpg{% endif %}">
 
   <meta http-equiv="x-dns-prefetch-control" content="on">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Martel:200,700,900|Open+Sans:400,700|Roboto+Condensed:700">
-  <link rel="stylesheet" href="{{ site.url }}/css/main.css">
+  <link rel="stylesheet" href="{{ site.url }}/assets/css/main.css">
 
   <!-- Midtrans Snap.js -->
   <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{site.CLIENT_KEY}}"></script>

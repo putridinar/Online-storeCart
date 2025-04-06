@@ -34,13 +34,15 @@ permalink: /confirm-success
 
     simpleCart.each(function (item) {
       const name = item.get("name");
+      const warna = item.get("warna");
+      const varian = item.get("varian");
       const quantity = item.get("quantity");
       const price = item.get("price");
       const subtotal = item.get("total");
       total += subtotal;
       itemCount++;
 
-      message += `- ${name} x ${quantity} @Rp${price} = Rp${subtotal}\n`;
+      message += `- ${name}, ${warna}, ${varian} x ${quantity} @Rp${price} = Rp${subtotal}\n`;
     });
 
     if (itemCount === 0) {

@@ -1,0 +1,4 @@
+import{__spreadArray}from"tslib";
+/*!
+ * (C) Ionic http://ionicframework.com - MIT License
+ */import{c as config}from"./ionic-global-ca86cf32.js";var printIonWarning=function(r){var o=[];for(var n=1;n<arguments.length;n++){o[n-1]=arguments[n]}var a=config.get("logLevel","WARN");if(["WARN"].includes(a)){return console.warn.apply(console,__spreadArray(["[Ionic Warning]: ".concat(r)],o,false))}};var printIonError=function(r){var o=[];for(var n=1;n<arguments.length;n++){o[n-1]=arguments[n]}var a=config.get("logLevel","ERROR");if(["ERROR","WARN"].includes(a)){return console.error.apply(console,__spreadArray(["[Ionic Error]: ".concat(r)],o,false))}};var printRequiredElementError=function(r){var o=[];for(var n=1;n<arguments.length;n++){o[n-1]=arguments[n]}return console.error("<".concat(r.tagName.toLowerCase(),"> must be used inside ").concat(o.join(" or "),"."))};export{printIonError as a,printRequiredElementError as b,printIonWarning as p};

@@ -47,7 +47,7 @@ title: Ionic jekyllCart
       async connectedCallback() {
         const html = await fetchHTML(htmlPath);
         this.innerHTML = `
-          <ion-page>
+          <ion-tab tab="${tag}">
             <ion-header>
               <ion-toolbar>
                 <ion-title>${title}</ion-title>
@@ -56,7 +56,7 @@ title: Ionic jekyllCart
             <ion-content class="ion-padding">
               ${html}
             </ion-content>
-          </ion-page>
+          </ion-tab>
         `;
       }
     });

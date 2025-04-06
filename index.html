@@ -3,6 +3,16 @@ layout: default
 title: Ionic jekyllCart
 ---
 
+<ion-router use-hash="false">
+  <ion-route url="/" component="home"></ion-route>
+  <ion-route url="/shop" component="shop"></ion-route>
+  <ion-route url="/cart" component="cart"></ion-route>
+  <ion-route url="/profile" component="profile"></ion-route>
+</ion-router>
+
+<ion-tabs>
+  <ion-router-outlet></ion-router-outlet>
+
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home" href="/content/home">
       <ion-icon name="home-outline"></ion-icon>
@@ -24,3 +34,36 @@ title: Ionic jekyllCart
       <ion-label>Profile</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
+</ion-tabs>
+
+<script>
+  const fetchHTML = async (filename) => {
+    const res = await fetch(`/content/${filename}`);
+    return await res.text(); // langsung HTML, tidak perlu convert
+  };
+
+  const createComponent = (tag, htmlPath, title) => {
+    customElements.define(tag, class extends HTMLElement {
+      async connectedCallback() {
+        const html = await fetchHTML(htmlPath);
+        this.innerHTML = `
+          <ion-page>
+            <ion-header>
+              <ion-toolbar>
+                <ion-title>${title}</ion-title>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              ${html}
+            </ion-content>
+          </ion-page>
+        `;
+      }
+    });
+  };
+
+  createComponent('home-page', '/content/home.html', 'Home');
+  createComponent('shop-page', '/content/shop.html', 'Shop');
+  createComponent('cart-page', '/content/cart.html', 'Shop');
+  createComponent('profile-page', '/content/profile.html', 'Profile');
+</script>

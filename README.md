@@ -1,1 +1,2 @@
-# JekyllCart-mod, simpleCart + midtrans payment system
+# JekyllCart-mod
+## simpleCart + midtrans payment system

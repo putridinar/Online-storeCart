@@ -42,7 +42,7 @@ permalink: /confirm-success
       total += subtotal;
       itemCount++;
 
-      message += `- *Produk ${name}*,\n- *Warna ${warna}*,\n- *Ukuran ${varian}*,\n ${quantity} pcs *x* @Rp${price} = *Total harga Rp${subtotal}*\n`;
+      message += `---\n- *Produk ${name}*,\n- *Warna ${warna}*,\n- *Ukuran ${varian}*,\n ${quantity} pcs *x* @Rp${price} = *Total harga Rp${subtotal}*\n---`;
     });
 
     if (itemCount === 0) {
@@ -50,7 +50,7 @@ permalink: /confirm-success
       return;
     }
 
-    message += `\nTotal: Rp${total}`;
+    message += `\nTotal Pembayaran: Rp${total}`;
 
     const phoneNumber = "{{ site.wa_key }}";
     const encodedMessage = encodeURIComponent(message);

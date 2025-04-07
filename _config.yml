@@ -4,6 +4,7 @@ description: A Jekyll Based Shopping Cart Built with simpleCart(js)
 url:
 dev: Putri Dinar
 CLIENT_KEY: SB-Mid-client-i2KW02MfN9duiyJ9
+wa_key: 6281111191209
 
 # Jekyll Configuration
 encoding: UTF-8

@@ -52,7 +52,7 @@ permalink: /confirm-success
 
     message += `\nTotal: Rp${total}`;
 
-    const phoneNumber = "6281111191209";
+    const phoneNumber = "{{ site.wa_key }}";
     const encodedMessage = encodeURIComponent(message);
     const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 

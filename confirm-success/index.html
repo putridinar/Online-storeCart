@@ -27,7 +27,7 @@ permalink: /confirm-success
     message += `Nama: ${firstName} ${lastName}\n`;
     message += `Email: ${email}\n`;
     message += `Alamat: ${street}, ${city}, ${state}, ${zip}\n\n`;
-    message += `Detail Pesanan:\n`;
+    message += `Detail Pesanan:\n---`;
 
     let total = 0;
     let itemCount = 0;
@@ -42,7 +42,7 @@ permalink: /confirm-success
       total += subtotal;
       itemCount++;
 
-      message += `---\n- *Produk ${name}*,\n- *Warna ${warna}*,\n- *Ukuran ${varian}*,\n ${quantity} pcs *x* @Rp${price} = *Total harga Rp${subtotal}*\n---`;
+      message += `\n- *Produk ${name}*,\n- *Warna ${warna}*,\n- *Ukuran ${varian}*,\n ${quantity} pcs *x* @Rp${price} = *Total harga Rp${subtotal}*\n---`;
     });
 
     if (itemCount === 0) {

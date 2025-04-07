@@ -40,10 +40,23 @@ layout: default
             {% endfor %}
 </div><p class="item_ukuran" id="selectedSize">Silahkan Pilih</p>
 <script>
-   document.querySelectorAll(".btn-size").forEach(button => {
-     button.addEventListener("click", function() {
-       document.getElementById("selectedSize").textContent = "" + this.getAttribute("data-size");
+  let selectedSize = "";
+
+  document.querySelectorAll(".btn-size").forEach(button => {
+    button.addEventListener("click", function() {
+      selectedSize = this.getAttribute("data-size");
+      document.getElementById("selectedSize").textContent = selectedSize;
     });
+  });
+
+  document.querySelector(".item_add").addEventListener("click", function(e) {
+    if (!selectedSize) {
+      e.preventDefault(); // Mencegah proses add to cart
+      alert("Silakan pilih ukuran terlebih dahulu.");
+    } else {
+      // Lanjutkan proses tambah ke keranjang, misalnya set atribut hidden input
+      document.querySelector("input[name='item_size']").value = selectedSize;
+    }
   });
 </script>
 

@@ -1,7 +1,7 @@
 ---
 title: Scar the Lion
 description:
-price: '4.00'
+price: '40.000'
 sizes:
   - Small
   - Medium

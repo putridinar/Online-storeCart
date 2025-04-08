@@ -1,7 +1,7 @@
 ---
 title: Sacha the Deer
 description: Deer t-shirt
-price: '4.00'
+price: '40.000'
 sizes:
   - Small
   - Medium

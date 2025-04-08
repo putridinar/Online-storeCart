@@ -1,7 +1,7 @@
 ---
 title: Gavin the Tiger
 description:
-price: '4.00'
+price: '40.000'
 sizes:
   - Small
   - Medium
